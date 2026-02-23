@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chandrawati Hospital | Advanced Pediatric Care</title>
+    <title>Chandrawati Hospital | Advanced Pediatric & Maternity Care</title>
     
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
@@ -35,1030 +35,701 @@
             position: relative;
         }
 
-        /* Animated Background Particles */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
+        /* --- SMOOTH CSS BACKGROUND BUBBLES --- */
+        .bg-bubbles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            overflow: hidden; pointer-events: none;
+            background-image: radial-gradient(#E0E7EA 15%, transparent 16%), radial-gradient(#E0E7EA 15%, transparent 16%);
+            background-size: 60px 60px; background-position: 0 0, 30px 30px;
         }
+
+        .bubble {
+            position: absolute; bottom: -100px; border-radius: 50%;
+            animation: float-up 15s infinite linear; will-change: transform;
+        }
+        .bubble:nth-child(1) { background-color: rgba(255, 107, 107, 0.15); width: 80px; height: 80px; left: 10%; animation-duration: 12s; }
+        .bubble:nth-child(2) { background-color: rgba(78, 205, 196, 0.15); width: 40px; height: 40px; left: 20%; animation-duration: 8s; animation-delay: 2s; }
+        .bubble:nth-child(3) { background-color: rgba(255, 217, 61, 0.15); width: 100px; height: 100px; left: 35%; animation-duration: 15s; animation-delay: 4s; }
+        .bubble:nth-child(4) { background-color: rgba(108, 92, 231, 0.15); width: 60px; height: 60px; left: 50%; animation-duration: 10s; animation-delay: 0s; }
+        .bubble:nth-child(5) { background-color: rgba(255, 107, 107, 0.15); width: 90px; height: 90px; left: 70%; animation-duration: 14s; animation-delay: 1s; }
+        .bubble:nth-child(6) { background-color: rgba(78, 205, 196, 0.15); width: 50px; height: 50px; left: 85%; animation-duration: 9s; animation-delay: 3s; }
+
+        @keyframes float-up { 0% { transform: translateY(0); } 100% { transform: translateY(-120vh); } }
 
         h1, h2, h3 { font-family: 'Fredoka', sans-serif; letter-spacing: 0.5px; }
 
-        /* Scroll Progress Bar */
         .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 5px;
+            position: fixed; top: 0; left: 0; height: 5px;
             background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
-            z-index: 9999;
-            transition: width 0.1s;
+            z-index: 9999; width: 0%;
         }
 
         /* --- NAVIGATION --- */
         nav { 
-            background: rgba(255, 255, 255, 0.95); 
-            padding: 12px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border-bottom: 4px solid var(--blue);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98); padding: 10px 5%; display: flex; 
+            justify-content: space-between; align-items: center; position: sticky; top: 0; 
+            z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-bottom: 4px solid var(--blue);
             transition: all 0.3s;
         }
+        nav.scrolled { padding: 8px 5%; box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
 
-        nav.scrolled {
-            padding: 8px 5%;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        }
-
-        .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-img { 
-            height: 75px; 
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); 
-            transition: all 0.4s var(--bounce);
-            animation: gentle-bounce 2s ease-in-out infinite;
-        }
-        .logo-img:hover { transform: scale(1.15) rotate(-5deg); }
-
-        @keyframes gentle-bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 65px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: all 0.4s var(--bounce); }
+        .logo-img:hover { transform: scale(1.1) rotate(-5deg); }
         
         .hospital-name { 
-            font-size: 2.2rem; 
-            color: var(--deep-blue); 
-            font-weight: 900; 
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            transition: all 0.3s;
+            font-size: 1.8rem; color: var(--deep-blue); font-weight: 900; 
+            line-height: 1.1; text-transform: uppercase; letter-spacing: -0.5px;
         }
 
-        .hospital-name:hover {
-            color: var(--pink);
-            transform: scale(1.05);
-        }
-
+        .nav-links { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: flex-end; }
         .nav-links a { 
-            text-decoration: none; 
-            color: var(--dark); 
-            margin-left: 25px; 
-            font-weight: 800; 
-            font-size: 1.05rem;
-            position: relative;
-            transition: 0.3s;
-            display: inline-block;
+            text-decoration: none; color: var(--dark); font-weight: 800; font-size: 1rem;
+            position: relative; transition: 0.3s; cursor: pointer; padding: 5px 8px;
         }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -5px;
-            left: 50%;
-            background: var(--pink);
-            transition: all 0.3s;
-            transform: translateX(-50%);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
         .nav-links a:hover { color: var(--pink); transform: translateY(-2px); }
 
         .btn-appoint { 
-            background: linear-gradient(135deg, var(--pink), #ff8787); 
-            color: white !important; 
-            padding: 12px 30px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            box-shadow: 0 5px 0 #D63031, 0 10px 20px rgba(255, 107, 107, 0.4); 
-            transition: all 0.2s; 
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, var(--pink), #ff8787); color: white !important; 
+            padding: 10px 25px !important; border-radius: 50px; text-decoration: none; 
+            font-weight: bold; box-shadow: 0 5px 0 #D63031; transition: all 0.2s; border: none; cursor: pointer;
         }
-        
-        .btn-appoint::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .btn-appoint:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
         .btn-appoint:active { transform: translateY(5px); box-shadow: none; }
+        .btn-appoint:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
 
         /* --- HERO SECTION --- */
-        .hero { 
-            text-align: center; 
-            padding: 100px 5%; 
-            background: linear-gradient(180deg, #E0F7FA 0%, rgba(224, 247, 250, 0.3) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            animation: pulse-glow 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.8; }
-        }
-        
-        .hero h1 { 
-            font-size: 4rem; 
-            color: var(--purple); 
-            margin-bottom: 15px;
-            text-shadow: 3px 3px 0px var(--white);
-            animation: slide-in-top 0.8s ease-out;
-            position: relative;
-            z-index: 1;
-        }
-        
-        @keyframes slide-in-top {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        
-        .hero p { 
-            font-size: 1.5rem; 
-            color: #555; 
-            margin-bottom: 40px; 
-            font-weight: 600;
-            animation: slide-in-bottom 0.8s ease-out 0.2s both;
-        }
-        
-        @keyframes slide-in-bottom {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+        .hero { text-align: center; padding: 80px 5%; background: linear-gradient(180deg, #E0F7FA 0%, rgba(224, 247, 250, 0.3) 100%); position: relative; }
+        .hero h1 { font-size: 3.5rem; color: var(--purple); margin-bottom: 15px; text-shadow: 2px 2px 0px var(--white); }
+        .hero p { font-size: 1.3rem; color: #555; margin-bottom: 30px; font-weight: 600; }
         
         .hero-main-img {
-            border-radius: 40px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
-            width: 100%; 
-            max-width: 550px; 
-            border: 10px solid white;
-            transition: all 0.5s var(--bounce);
-            animation: fade-in 1s ease-out 0.4s both;
-            cursor: pointer;
+            border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+            width: 100%; max-width: 500px; border: 8px solid white; transition: all 0.5s var(--bounce);
         }
-        
-        @keyframes fade-in {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        
-        .hero-main-img:hover { 
-            transform: scale(1.05) rotate(-2deg); 
-            box-shadow: 0 35px 70px rgba(0,0,0,0.25);
-        }
-        
-        .hero-decoration { 
-            font-size: 3.5rem; 
-            position: absolute; 
-            animation: float 3s ease-in-out infinite; 
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
-        }
-        .d1 { top: 10%; left: 8%; animation-delay: 0s; }
-        .d2 { top: 15%; right: 8%; animation-delay: 1.5s; }
-        
-        @keyframes float { 
-            0%, 100% { transform: translateY(0) rotate(0deg); } 
-            50% { transform: translateY(-25px) rotate(10deg); } 
-        }
+        .hero-main-img:hover { transform: scale(1.03) rotate(-1deg); }
 
-        /* Stats Counter Section */
-        .stats-section {
-            background: linear-gradient(135deg, var(--purple), var(--deep-blue));
-            padding: 60px 5%;
-            color: white;
-            margin: 60px 0;
-        }
+        /* --- GRID & CARDS --- */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; padding: 0 5%; }
         
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-        
-        .stat-item {
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-        
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--yellow);
-            display: block;
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            font-size: 1.2rem;
-            font-weight: 600;
-            opacity: 0.9;
-        }
-
-        /* --- GRID LAYOUTS --- */
-        .grid-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 40px; 
-            padding: 0 5%;
-        }
-        
-        /* --- 3D INTERACTIVE CARDS --- */
         .card-3d { 
-            background: white; 
-            border-radius: 25px; 
-            text-align: center; 
-            box-shadow: 0 10px 0 #E0E0E0, 0 20px 40px rgba(0,0,0,0.1); 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            overflow: hidden;
-            border: 4px solid white;
-            position: relative;
-            transform-style: preserve-3d;        }
-        
-        .card-3d::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
+            background: white; border-radius: 25px; text-align: center; 
+            box-shadow: 0 10px 0 #E0E0E0, 0 15px 30px rgba(0,0,0,0.08); 
+            transition: all 0.3s ease; cursor: pointer; overflow: hidden; border: 4px solid white;
+            will-change: transform;
         }
+        .card-3d:hover { transform: translateY(-10px); box-shadow: 0 15px 0 #E0E0E0, 0 25px 50px rgba(0,0,0,0.15); }
         
-        .card-3d:hover::before {
-            left: 100%;
-        }
-        
-        .card-3d:hover { 
-            transform: translateY(-15px) rotateX(5deg); 
-            box-shadow: 0 25px 0 #E0E0E0, 0 35px 70px rgba(0,0,0,0.2);
-        }
-        
-        .card-3d:active {
-            transform: translateY(5px) rotateX(0deg);
-            box-shadow: 0 5px 0 #E0E0E0;
-        }
-        
-        /* Card Variants */
         .card-blue { border-bottom: 8px solid var(--blue); }
         .card-pink { border-bottom: 8px solid var(--pink); }
         .card-yellow { border-bottom: 8px solid var(--yellow); }
         .card-purple { border-bottom: 8px solid var(--purple); }
 
-        .card-img { 
-            width: 100%; 
-            height: 220px; 
-            object-fit: cover; 
-            border-bottom: 2px solid #eee;
-            transition: all 0.5s;
-        }
+        .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid #eee; transition: all 0.5s; }
+        .card-3d:hover .card-img { transform: scale(1.05); }
         
-        .card-3d:hover .card-img {
-            transform: scale(1.1);
-        }
-        
-        .card-content { padding: 20px; }
-        .card-title { 
-            font-weight: 800; 
-            font-size: 1.3rem; 
-            color: var(--dark); 
-            margin-bottom: 8px;
-            transition: all 0.3s;
-        }
-        
-        .card-3d:hover .card-title {
-            color: var(--pink);
-            transform: scale(1.05);
-        }
+        .card-content { padding: 20px; background: white; position: relative; }
+        .card-title { font-weight: 800; font-size: 1.3rem; color: var(--dark); margin-bottom: 8px; }
         
         .read-more-btn { 
-            margin-top: 15px; 
-            background: linear-gradient(135deg, var(--deep-blue), var(--blue)); 
-            color: white; 
-            border: none; 
-            padding: 10px 30px; 
-            border-radius: 25px; 
-            font-weight: bold; 
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            margin-top: 15px; background: linear-gradient(135deg, var(--deep-blue), var(--blue)); 
+            color: white; border: none; padding: 10px 30px; border-radius: 25px; 
+            font-weight: bold; cursor: pointer; transition: all 0.3s;
         }
+
+        /* --- DETAILED TREATMENT SECTION --- */
+        .treatment-list { list-style: none; padding: 0; margin-top: 20px; text-align: left; }
+        .treatment-list li {
+            padding: 18px 20px; margin-bottom: 15px; background: #f8f9fa; border-radius: 12px;
+            font-weight: 500; color: var(--dark); border-left: 6px solid;
+            display: flex; align-items: flex-start; line-height: 1.6; font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: 0.3s;
+        }
+        .treatment-list li:hover { transform: translateX(5px); box-shadow: 0 6px 12px rgba(0,0,0,0.05); }
+        .treatment-list li strong { display: block; margin-bottom: 5px; font-size: 1.25rem; }
         
-        .read-more-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
+        .tl-peds li { border-left-color: var(--blue); }
+        .tl-peds li::before { content: '🩺'; margin-right: 15px; font-size: 1.8rem; line-height: 1.2; }
         
-        .read-more-btn:hover::before {
-            width: 200px;
-            height: 200px;
+        .tl-obg li { border-left-color: var(--pink); }
+        .tl-obg li::before { content: '🌸'; margin-right: 15px; font-size: 1.8rem; line-height: 1.2; }
+
+        /* --- TRACKER TABS (SHARED) --- */
+        .tracker-wrapper {
+            background: white; border-radius: 30px; box-shadow: var(--shadow);
+            padding: 30px; max-width: 1000px; margin: 0 auto; 
         }
+        .tracker-tabs {
+            display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px;
+            scrollbar-width: none; border-bottom: 2px solid #eee;
+        }
+        .tracker-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            background: #f0f4f8; border: none; padding: 12px 25px; border-radius: 50px;
+            font-weight: bold; font-family: 'Nunito', sans-serif; cursor: pointer;
+            color: var(--dark); white-space: nowrap; transition: 0.3s; font-size: 1.1rem;
+        }
+        .tab-btn.active { box-shadow: 0 5px 15px rgba(0,0,0,0.15); color: white; }
         
-        .read-more-btn:hover { 
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.4);
+        .tracker-content { display: none; padding: 30px 10px 10px; animation: fade-in 0.4s; text-align: left; }
+        .tracker-content.active { display: block; }
+        
+        .milestone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .m-box { background: #f8f9fa; padding: 20px; border-radius: 20px; border-left: 5px solid; }
+        .m-box h4 { margin-top: 0; font-size: 1.2rem; }
+
+        .baby-tracker { border: 6px solid var(--blue); }
+        .baby-tracker .tab-btn.active { background: var(--blue); }
+        .baby-tracker .m-box { border-left-color: var(--blue); }
+        .baby-tracker h4 { color: var(--blue); }
+
+        .preg-tracker { border: 6px solid var(--pink); }
+        .preg-tracker .tab-btn.active { background: var(--pink); }
+        .preg-tracker .m-box { border-left-color: var(--pink); }
+        .preg-tracker h4 { color: var(--pink); }
+
+        /* --- BLOGS SECTION --- */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .blog-card {
+            background: white; border-radius: 20px; padding: 25px; text-align: left;
+            box-shadow: var(--shadow); border-top: 5px solid var(--purple); transition: 0.3s; cursor: pointer;
         }
+        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .blog-tag { background: var(--purple); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        .blog-title { font-size: 1.4rem; color: var(--deep-blue); margin: 0 0 10px 0; font-family: 'Fredoka', sans-serif; }
+        .blog-excerpt { color: #666; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
+        .blog-read { color: var(--pink); font-weight: bold; text-decoration: none; cursor: pointer; display: inline-block; }
 
         /* --- DOCTORS --- */
         .doc-card { 
-            background: white; 
-            border-radius: 30px; 
-            box-shadow: var(--shadow); 
-            text-align: center; 
-            padding-bottom: 20px;
-            border: 5px solid white;
-            transition: all 0.4s;
-            overflow: hidden;
-            position: relative;
+            background: white; border-radius: 30px; box-shadow: var(--shadow); 
+            text-align: center; padding-bottom: 20px; border: 5px solid white; transition: all 0.4s;
         }
-        
-        .doc-card::after {
-            content: '⭐';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            opacity: 0;
-            transform: rotate(-45deg) scale(0);
-            transition: all 0.4s;
-        }
-        
-        .doc-card:hover::after {
-            opacity: 1;
-            transform: rotate(0deg) scale(1);
-        }
-        
-        .doc-card:hover { 
-            transform: translateY(-10px) scale(1.02); 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
-        
+        .doc-card:hover { transform: translateY(-10px); }
         .doc-photo { 
-            width: 100%; 
-            height: 320px; 
-            object-fit: cover; 
-            border-radius: 25px 25px 0 0; 
+            width: 100%; height: 320px; object-fit: cover; border-radius: 25px 25px 0 0; 
             border-bottom: 6px solid var(--yellow);
-            transition: all 0.5s;
-            filter: grayscale(20%);
         }
-        
-        .doc-card:hover .doc-photo {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-        
-        .doc-name { 
-            color: var(--deep-blue); 
-            font-size: 1.6rem; 
-            margin: 15px 0 5px; 
-            font-weight: 900;
-            transition: all 0.3s;
-        }
-        
-        .doc-card:hover .doc-name {
-            color: var(--pink);
-            transform: scale(1.05);
-        }
-
-        /* --- VACCINE TABLE --- */
-        .vaccine-wrapper {
-            background: white; 
-            padding: 30px; 
-            border-radius: 30px; 
-            box-shadow: var(--shadow); 
-            margin-top: 30px; 
-            border: 5px solid var(--purple);
-            overflow-x: auto;
-            animation: slide-in-bottom 0.8s ease-out;
-        }
-        
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 700px; 
-        }
-        
-        th { 
-            background: linear-gradient(135deg, var(--purple), var(--deep-blue)); 
-            color: white; 
-            padding: 20px; 
-            text-align: left; 
-            font-size: 1.1rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        td { 
-            padding: 18px; 
-            border-bottom: 2px solid #eee; 
-            color: #555; 
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        tr:nth-child(even) { background: #f8f9fa; }
-        
-        tr:hover { 
-            background: linear-gradient(90deg, #E0E7FF, #FFE5E5);
-            transform: scale(1.01);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        tr:hover td {
-            color: var(--dark);
-            font-weight: 700;
-        }
+        .doc-name { color: var(--deep-blue); font-size: 1.6rem; margin: 15px 0 5px; font-weight: 900; }
 
         /* --- MODAL (POPUP) --- */
         .modal-overlay { 
-            display: none; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(45, 52, 54, 0.95); 
-            z-index: 2000; 
-            backdrop-filter: blur(15px);
-            align-items: center; 
-            justify-content: center; 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.7); z-index: 2000; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
         }
-        
         .modal-box { 
-            background: white; 
-            width: 90%; 
-            max-width: 700px; 
-            border-radius: 35px; 
-            padding: 45px; 
-            position: relative; 
-            animation: popIn 0.5s var(--bounce);
-            max-height: 85vh; 
-            overflow-y: auto; 
-            border: 10px solid var(--blue);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            background: white; width: 100%; max-width: 700px; border-radius: 25px; 
+            padding: 35px; position: relative; animation: popIn 0.3s ease-out;
+            max-height: 85vh; overflow-y: auto; border: 8px solid var(--blue);
         }
-        
-        @keyframes popIn { 
-            0% { transform: scale(0.7) rotate(-5deg); opacity: 0; } 
-            100% { transform: scale(1) rotate(0); opacity: 1; } 
-        }
-        
+        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         .close-btn { 
-            position: absolute; 
-            top: 20px; 
-            right: 25px; 
-            font-size: 2.8rem; 
-            cursor: pointer; 
-            color: var(--pink); 
-            transition: all 0.3s;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 107, 107, 0.1);
+            position: absolute; top: 15px; right: 15px; font-size: 2.5rem; cursor: pointer; color: var(--pink); 
+            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; 
+            border-radius: 50%; background: rgba(255, 107, 107, 0.1); z-index: 10;
         }
+        .close-btn:hover { background: var(--pink); color: white; }
         
-        .close-btn:hover { 
-            transform: rotate(90deg) scale(1.2); 
-            background: var(--pink);
-            color: white;
-        }
-        
-        .modal-h2 { 
-            color: var(--deep-blue); 
-            margin-top: 0; 
-            font-size: 2.2rem; 
-            border-bottom: 4px solid var(--yellow); 
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        
-        .modal-ul { 
-            text-align: left; 
-            line-height: 2; 
-            font-size: 1.15rem; 
-            color: #444; 
-            margin-top: 25px; 
-        }
-        
-        .modal-ul li { 
-            margin-bottom: 15px;
-            padding-left: 10px;
-            border-left: 4px solid var(--blue);
-            padding-top: 5px;
-            padding-bottom: 5px;
-            transition: all 0.3s;
-        }
-        
-        .modal-ul li:hover {
-            border-left-color: var(--pink);
-            transform: translateX(10px);
-            background: #f8f9fa;
-            padding-left: 20px;
-        }
+        .modal-h2 { color: var(--deep-blue); margin-top: 0; font-size: 2rem; border-bottom: 4px solid var(--yellow); padding-bottom: 10px; display: inline-block; }
+        .modal-ul { text-align: left; line-height: 1.8; font-size: 1.1rem; color: #444; margin-top: 20px; padding-left: 0; list-style: none;}
+        .modal-ul li { margin-bottom: 15px; padding-left: 15px; border-left: 4px solid var(--blue); }
+        .modal-ul ul { padding-left: 20px; margin-top: 5px; list-style-type: circle; color: #555; }
+        .modal-ul ul li { border-left: none; margin-bottom: 8px; padding-left: 5px; }
 
-        /* --- BOOKING FORM --- */
-        .booking-section { 
-            background: linear-gradient(135deg, #fff 0%, #f0f9ff 100%); 
-            max-width: 800px; 
-            margin: 80px auto; 
-            padding: 60px; 
-            border-radius: 50px; 
-            box-shadow: 0 25px 70px rgba(0,0,0,0.15); 
-            border: 8px solid var(--deep-blue); 
-            position: relative;
-            animation: slide-in-bottom 0.8s ease-out;
+        /* --- PATIENT PORTAL STYLES --- */
+        .portal-tabs { display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; }
+        .portal-tab { 
+            background: #f0f4f8; border: none; padding: 12px 25px; border-radius: 50px; 
+            font-weight: bold; cursor: pointer; font-size: 1.1rem; color: var(--dark);
         }
+        .portal-tab.active { background: var(--blue); color: white; box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4); }
         
-        .booking-section::before { 
-            content: '🧸'; 
-            font-size: 6rem; 
-            position: absolute; 
-            top: -60px; 
-            right: -30px; 
-            transform: rotate(15deg);
-            animation: float 3s ease-in-out infinite;
+        .portal-form-group { margin-bottom: 15px; text-align: left; }
+        .portal-form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--dark); }
+        .portal-form-group input, .portal-form-group select { 
+            width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 12px; 
+            font-size: 1rem; font-family: 'Nunito', sans-serif; background: #f9f9f9; box-sizing: border-box;
         }
+        .portal-form-group input:focus, .portal-form-group select:focus { border-color: var(--blue); outline: none; background: white; }
         
-        input, select { 
-            width: 100%; 
-            padding: 18px; 
-            margin-bottom: 25px; 
-            border: 3px solid #e0e0e0; 
-            border-radius: 20px; 
-            font-size: 1.1rem; 
-            box-sizing: border-box; 
-            transition: all 0.3s;
-            background: #f9f9f9;
-            font-family: 'Nunito', sans-serif;
-        }
-        
-        input:focus, select:focus { 
-            border-color: var(--pink); 
-            outline: none; 
-            background: white; 
-            box-shadow: 0 0 0 5px rgba(255,107,107,0.15);
-            transform: scale(1.02);
-        }
-        
-        input:hover, select:hover {
-            border-color: var(--blue);
-        }
+        .history-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .history-table th { background: var(--purple); color: white; padding: 12px; text-align: left; border-radius: 8px 8px 0 0; }
+        .history-table td { padding: 12px; border-bottom: 1px solid #ddd; }
+        .status-badge { background: var(--yellow); padding: 5px 10px; border-radius: 10px; font-size: 0.85rem; font-weight: bold; color: var(--dark); }
+        .token-badge { background: var(--pink); color: white; padding: 4px 8px; border-radius: 5px; font-weight: bold; font-size: 0.9rem; }
 
         /* --- FOOTER --- */
-        footer { 
-            background: linear-gradient(135deg, var(--dark), #1a1f20); 
-            color: white; 
-            padding: 80px 10%; 
-            text-align: center; 
-            font-size: 1.1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
-            top: -100px;
-            left: -100px;
-        }
-        
-        footer h2 {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
+        footer { background: var(--dark); color: white; padding: 60px 5%; text-align: center; font-size: 1.1rem; }
 
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-        
-        .menu-toggle span {
-            width: 30px;
-            height: 3px;
-            background: var(--dark);
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.2rem; }
-            .hospital-name { font-size: 1.5rem; }
-            .nav-links { display: none; }
-            .menu-toggle { display: flex; }
-            .grid-container { grid-template-columns: 1fr; }
-            .stat-number { font-size: 2.5rem; }
-            .booking-section { padding: 30px; }
-            .modal-box { padding: 25px; }
+            .hospital-name { font-size: 1.4rem; }
+            .nav-links { justify-content: center; gap: 10px; padding-top: 10px;}
+            .modal-box { padding: 25px; border-width: 4px;}
         }
-
-        /* Loading Animation */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.5s;
-        }
-        
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid var(--pink);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loader"></div>
+    <div class="bg-bubbles">
+        <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
+        <div class="bubble b4"></div><div class="bubble b5"></div><div class="bubble b6"></div>
     </div>
 
-    <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Particles Canvas -->
-    <canvas id="particles-canvas"></canvas>
-
-    <div style="background: var(--pink); color: white; text-align: center; padding: 12px; font-weight: bold; letter-spacing: 1px; animation: slide-in-top 0.5s ease-out;">
-        🚑 EMERGENCY 24/7 HELPLINE: <a href="tel:+917779970332" style="color:white; text-decoration: underline; font-size: 1.15rem;">+91 77799 70332</a>
+    <div style="background: var(--pink); color: white; text-align: center; padding: 10px; font-weight: bold;">
+        🚑 EMERGENCY 24/7 HELPLINE: <a href="tel:+917779970332" style="color:white; text-decoration: underline;">+91 77799 70332</a>
     </div>
 
     <nav id="mainNav">
         <div class="logo-container">
             <img src="hospital-logo.jpg" alt="Logo" class="logo-img">
-            <div class="hospital-name">Chandrawati<br><span style="font-size: 1.2rem; color: var(--blue);">Hospital</span></div>
+            <div class="hospital-name">Chandrawati<br><span style="font-size: 1rem; color: var(--blue);">Hospital</span></div>
         </div>
         <div class="nav-links">
-            <a href="#doctors">Doctors</a>
-            <a href="#info">Parents Guide</a>
+            <a href="#treatments">Scope of Care</a>
             <a href="#facilities">Facilities</a>
-            <a href="#vaccine">Vaccine Chart</a>
-            <a href="#booking" class="btn-appoint">Book Appointment</a>
-        </div>
-        <div class="menu-toggle" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+            <a href="#doctors">Doctors</a>
+            <a href="#info">Parent Guide</a>
+            <a href="#trackers">Trackers</a>
+            <a href="#blogs">Blogs</a>
+            <a onclick="openModal('modal-iap-schedule');" style="color: var(--deep-blue);"><i class="fas fa-syringe"></i> Vaccine Chart</a>
+            <button onclick="openPatientPortal()" class="btn-appoint">Patient Portal</button>
         </div>
     </nav>
 
     <header class="hero">
-        <span class="hero-decoration d1">🎈</span>
-        <span class="hero-decoration d2">🍬</span>
         <h1>Where Little Smiles<br>Grow Big! 🌟</h1>
         <p>Expert Pediatric, Neonatal & Gynecological Care in a Loving Environment.</p>
-        <br>
         <img src="image_1.jpg" class="hero-main-img" alt="Mother and Child Care">
     </header>
 
-    <!-- Stats Counter Section -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-number" data-target="5000">0</span>
-                <span class="stat-label">Happy Families</span>
+    <section id="treatments" style="padding: 80px 5%; background: white;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 3rem; color: var(--pink);">Scope of Care 🩺</h2>
+            <p style="font-size: 1.2rem; color: #666;">Comprehensive medical expertise for mothers and children.</p>
+        </div>
+        <div class="grid-container">
+            <div class="card-3d card-blue" style="text-align: left; cursor: default;">
+                <div class="card-content" style="padding: 30px;">
+                    <h3 style="color: var(--blue); font-size: 2rem; margin-top: 0; text-align: center; border-bottom: 3px solid #eee; padding-bottom: 10px;">👶 Pediatric Care</h3>
+                    <ul class="treatment-list tl-peds">
+                        <li><strong>Neonatal Intensive Care (Level 3 NICU)</strong> Comprehensive care of premature and sick newborns in a state-of-the-art facility.</li>
+                        <li><strong>General Pediatrics & Infectious Diseases</strong> Expert management of childhood infections, tropical fevers, and seasonal illnesses.</li>
+                        <li><strong>Growth & Developmental Pediatrics</strong> Rigorous monitoring of physical growth, motor skills, and neurodevelopmental milestones.</li>
+                        <li><strong>Routine & Advanced Immunization</strong> Strictly following IAP guidelines for painless vaccinations and catch-up schedules.</li>
+                        <li><strong>Pediatric Nutrition & Dietetics</strong> Expert lactation counseling, weaning guidance, and management of nutritional deficiencies.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="15">0</span>
-                <span class="stat-label">Years of Excellence</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="24">0</span>
-                <span class="stat-label">Hours Emergency Care</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="100">0</span>
-                <span class="stat-label">% Dedication</span>
+
+            <div class="card-3d card-pink" style="text-align: left; cursor: default;">
+                <div class="card-content" style="padding: 30px;">
+                    <h3 style="color: var(--pink); font-size: 2rem; margin-top: 0; text-align: center; border-bottom: 3px solid #eee; padding-bottom: 10px;">👩‍⚕️ Obs & Gynaecology</h3>
+                    <ul class="treatment-list tl-obg">
+                        <li><strong>Comprehensive Maternity Care</strong> Expert antenatal tracking, high-risk pregnancy management (PIH, GDM), and postnatal support.</li>
+                        <li><strong>Advanced Birthing Solutions</strong> Safe normal vaginal deliveries, instrumental deliveries, and Painless (Epidural) labor options.</li>
+                        <li><strong>Gynecological Wellness & Endocrinology</strong> Management of PCOS/PCOD, abnormal uterine bleeding, and menopausal transitions.</li>
+                        <li><strong>Fertility & Reproductive Health</strong> Diagnostic evaluations, follicular monitoring, and guided infertility treatment plans.</li>
+                        <li><strong>Minimally Invasive Surgeries</strong> Laparoscopic procedures, safe Cesarean sections (LSCS), and comprehensive family planning.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="info" style="padding: 100px 5%;">
-        <div style="text-align: center; margin-bottom: 70px;">
-            <h2 style="font-size: 3rem; color: var(--deep-blue);">Parenting Knowledge Hub 🧠</h2>
-            <p style="font-size: 1.3rem; color: #666;">Expert tips for your little one's journey. Click to read!</p>
+    <section id="facilities" style="padding: 80px 5%; background: linear-gradient(180deg, #E0F7FA 0%, #F0F4FF 100%);">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.8rem; color: var(--deep-blue);">Advanced Facilities 🏥</h2>
         </div>
-
         <div class="grid-container">
-            <div class="card-3d card-blue" onclick="openModal('modal-growth')">
-                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=600&q=80" class="card-img">
+            <div class="card-3d card-blue" style="cursor:default;">
+                <img src="ventilator.jpg" class="card-img">
                 <div class="card-content">
-                    <div class="card-title">📏 Growth & Milestones</div>
-                    <p>Is your child on track?</p>
-                    <button class="read-more-btn">Read Details</button>
+                    <div class="card-title">Neonatal Ventilator</div>
+                    <p>Advanced life support for critical breathing.</p>
                 </div>
             </div>
+            <div class="card-3d card-blue" style="cursor:default;">
+                <img src="cpap.jpg" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">HFNC & Bubble CPAP</div>
+                    <p>Non-invasive respiratory support.</p>
+                </div>
+            </div>
+            <div class="card-3d card-blue" style="cursor:default;">
+                <img src="photo.jpeg" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">LED Phototherapy</div>
+                    <p>Double surface unit for jaundice.</p>
+                </div>
+            </div>
+            <div class="card-3d card-purple" style="cursor:default;">
+                <img src="ot.jpeg" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">Modular Operation Theatre</div>
+                    <p>Highly sterile surgical environment.</p>
+                </div>
+            </div>
+            <div class="card-3d card-pink" style="cursor:default;">
+                <img src="painless.jpg" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">Painless Vaccination</div>
+                    <p>Comfortable and anxiety-free immunization center.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="doctors" style="padding: 80px 5%; background: white;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.8rem; color: var(--pink);">Meet Our Heroes 🦸‍♂️</h2>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;">
+            <div class="doc-card" style="width: 280px;">
+                <img src="ritik.jpg" alt="Dr. Ritik" class="doc-photo">
+                <div style="padding: 15px;">
+                    <div class="doc-name">Dr. Ritik Chandra</div>
+                    <p style="color:#666; font-weight:bold; margin:0;">Consultant<br>Paediatrics</p>
+                </div>
+            </div>
+             <div class="doc-card" style="width: 280px;">
+                <img src="subhash.jpg" alt="Dr. Subhash Chandra" class="doc-photo">
+                <div style="padding: 15px;">
+                    <div class="doc-name">Dr. Subhash Chandra</div>
+                    <p style="color:#666; font-weight:bold; margin:0;">Senior Consultant<br>Paediatrics</p>
+                </div>
+            </div>
+            <div class="doc-card" style="width: 280px;">
+                <img src="anupama.jpg" alt="Dr. Anupama" class="doc-photo">
+                <div style="padding: 15px;">
+                    <div class="doc-name">Dr. Anupama Prasad</div>
+                    <p style="color:#666; font-weight:bold; margin:0;">Consultant<br>Obs & Gynaecology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info" style="padding: 80px 5%; background: #FFF9F9;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.8rem; color: var(--deep-blue);">Quick Parents Guide 💡</h2>
+            <p style="font-size: 1.2rem; color: #666;">Click to read detailed advice for your child's health.</p>
+        </div>
+        <div class="grid-container">
             <div class="card-3d card-pink" onclick="openModal('modal-vaccine')">
                 <img src="painless.jpg" class="card-img">
                 <div class="card-content">
-                    <div class="card-title">💉 Painless Vaccination</div>
-                    <p>Less tears, more protection.</p>
+                    <div class="card-title">💉 Vaccination</div>
                     <button class="read-more-btn">Read Details</button>
                 </div>
             </div>
-
             <div class="card-3d card-yellow" onclick="openModal('modal-nutrition')">
                 <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80" class="card-img">
                 <div class="card-content">
-                    <div class="card-title">🥦 Super Nutrition</div>
-                    <p>Building brains & immunity.</p>
+                    <div class="card-title">🥦 Detailed Nutrition</div>
                     <button class="read-more-btn">Read Details</button>
                 </div>
             </div>
-
             <div class="card-3d card-purple" onclick="openModal('modal-screen')">
                 <img src="https://images.unsplash.com/photo-1512413914633-b5043f4041ea?auto=format&fit=crop&w=600&q=80" class="card-img">
                 <div class="card-content">
                     <div class="card-title">📱 Screen Time Rules</div>
-                    <p>Protecting little eyes.</p>
                     <button class="read-more-btn">Read Details</button>
                 </div>
             </div>
-
             <div class="card-3d card-pink" onclick="openModal('modal-breastfeeding')">
                 <img src="ebf.jpeg" class="card-img">
                 <div class="card-content">
-                    <div class="card-title">🤱 Exclusive Breastfeeding</div>
-                    <p>Nature's perfect food.</p>
+                    <div class="card-title">🤱 Exclusive Breastfeed</div>
                     <button class="read-more-btn">Read Details</button>
                 </div>
             </div>
-
             <div class="card-3d card-yellow" onclick="openModal('modal-complementary')">
                 <img src="complementaryfeed.jpeg" class="card-img">
                 <div class="card-content">
                     <div class="card-title">🥣 Starting Solids</div>
-                    <p>From milk to meals.</p>
                     <button class="read-more-btn">Read Details</button>
                 </div>
             </div>
         </div>
     </section>
-    <section id="facilities" style="padding: 100px 5%; background: linear-gradient(180deg, #E0F7FA 0%, #F0F4FF 100%);">
-        <div style="text-align: center; margin-bottom: 70px;">
-            <h2 style="font-size: 3rem; color: var(--deep-blue);">Advanced Critical Care 🏥</h2>
-            <p style="font-size: 1.3rem;">State-of-the-art technology for your child's safety.</p>
+
+    <section id="trackers" style="padding: 80px 5%; background: white;">
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2.8rem; color: var(--blue);">👶 Baby Growth Tracker</h2>
+            <p style="font-size: 1.2rem; color: #666;">Select your baby's age to see milestones and feeding tips.</p>
         </div>
-        <div class="grid-container">
-            
-            <div class="card-3d card-blue">
-                <img src="ventilator.jpg" class="card-img">
-                <div class="card-content">
-                    <div class="card-title">Neonatal Ventilator</div>
-                    <p>Advanced life support for critical breathing issues.</p>
-                </div>
+        
+        <div class="tracker-wrapper baby-tracker" id="baby-tracker-container">
+            <div class="tracker-tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'm1', 'baby-tracker-container')">1 Month</button>
+                <button class="tab-btn" onclick="openTab(event, 'm2', 'baby-tracker-container')">2 Months</button>
+                <button class="tab-btn" onclick="openTab(event, 'm4', 'baby-tracker-container')">4 Months</button>
+                <button class="tab-btn" onclick="openTab(event, 'm6', 'baby-tracker-container')">6 Months</button>
+                <button class="tab-btn" onclick="openTab(event, 'm9', 'baby-tracker-container')">9 Months</button>
+                <button class="tab-btn" onclick="openTab(event, 'm12', 'baby-tracker-container')">12 Months</button>
             </div>
 
-            <div class="card-3d card-blue">
-                <img src="cpap.jpg" class="card-img">
-                <div class="card-content">
-                    <div class="card-title">HFNC & Bubble CPAP</div>
-                    <p>Non-invasive respiratory support for preemies.</p>
+            <div id="m1" class="tracker-content active">
+                <h3 style="color: var(--blue); font-size: 1.8rem;">1 Month Old</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>📏 Growth</h4><p>Regains birth weight. Gains 20-30g per day.</p></div>
+                    <div class="m-box"><h4>🧠 Milestones</h4><p>Follows objects briefly. Startles to noise.</p></div>
+                    <div class="m-box"><h4>🍼 Feeding</h4><p>Exclusive breastfeeding. 8-12 feeds/day. No water.</p></div>
                 </div>
             </div>
-
-            <div class="card-3d card-blue">
-                <img src="photo.jpeg" class="card-img">
-                <div class="card-content">
-                    <div class="card-title">LED Phototherapy</div>
-                    <p>Double surface unit for treating jaundice safely.</p>
+            <div id="m2" class="tracker-content">
+                <h3 style="color: var(--blue); font-size: 1.8rem;">2 Months Old</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>📏 Growth</h4><p>Gaining steady weight. Looks plumper.</p></div>
+                    <div class="m-box"><h4>🧠 Milestones</h4><p>The "Social Smile" appears! Holds head up briefly.</p></div>
+                    <div class="m-box"><h4>🍼 Care</h4><p>6-week vaccinations due. Continue exclusive milk.</p></div>
                 </div>
             </div>
-
-            <div class="card-3d card-pink">
-                <img src="painless.jpg" class="card-img">
-                <div class="card-content">
-                    <div class="card-title">Painless Vaccination</div>
-                    <p>Comfortable immunization center for kids.</p>
+            <div id="m4" class="tracker-content">
+                <h3 style="color: var(--blue); font-size: 1.8rem;">4 Months Old</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>📏 Growth</h4><p>Birth weight usually doubles around this time.</p></div>
+                    <div class="m-box"><h4>🧠 Milestones</h4><p>Rolls over. Babbles. Reaches for toys.</p></div>
+                    <div class="m-box"><h4>🍼 Feeding</h4><p>Still exclusive breast/formula milk.</p></div>
                 </div>
             </div>
-
-            <div class="card-3d card-purple">
-                <img src="https://images.unsplash.com/photo-1516574187841-693083f65220?auto=format&fit=crop&w=600&q=80" class="card-img">
-                <div class="card-content">
-                    <div class="card-title">Modular OT</div>
-                    <p>Sterile surgical environment.</p>
+            <div id="m6" class="tracker-content">
+                <h3 style="color: var(--blue); font-size: 1.8rem;">6 Months Old</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>📏 Growth</h4><p>First tooth might appear (lower incisor).</p></div>
+                    <div class="m-box"><h4>🧠 Milestones</h4><p>Sits without support. Responds to own name.</p></div>
+                    <div class="m-box" style="border-left-color: var(--yellow);"><h4>🥣 Feeding</h4><p>Start Weaning. Introduce smooth purees.</p></div>
                 </div>
             </div>
-            
-             <div class="card-3d card-blue">
-                <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=600&q=80" class="card-img">
-                <div class="card-content">
-                    <div class="card-title">Level 3 NICU</div>
-                    <p>Intensive care for newborns.</p>
+            <div id="m9" class="tracker-content">
+                <h3 style="color: var(--blue); font-size: 1.8rem;">9 Months Old</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>🧠 Milestones</h4><p>Crawling everywhere! Pulls to stand up.</p></div>
+                    <div class="m-box"><h4>💬 Social</h4><p>Stranger anxiety peaks. Understands "No".</p></div>
+                    <div class="m-box"><h4>🥣 Feeding</h4><p>Lumpy mashed foods and finger foods.</p></div>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-    <section id="doctors" style="padding: 100px 5%; background: white;">
-        <div style="text-align: center; margin-bottom: 60px;">
-            <h2 style="font-size: 3rem; color: var(--pink);">Meet Our Heroes 🦸‍♂️</h2>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 50px;">
-            <div class="doc-card">
-                <img src="ritik.jpg" alt="Dr. Ritik" class="doc-photo">
-                <div class="card-content">
-                    <div class="doc-name">Dr. Ritik Chandra</div>
-                    <p style="color:#666; font-weight:600;">Consultant<br>Paediatrics & Neonatology</p>
-                </div>
-            </div>
-
-             <div class="doc-card">
-                <img src="subhash.jpg" alt="Dr. Subhash Chandra" class="doc-photo">
-                <div class="card-content">
-                    <div class="doc-name">Dr. Subhash Chandra</div>
-                    <p style="color:#666; font-weight:600;">Senior Consultant<br>Paediatrics</p>
-                </div>
-            </div>
-
-            <div class="doc-card">
-                <img src="anupama.jpg" alt="Dr. Anupama" class="doc-photo">
-                <div class="card-content">
-                    <div class="doc-name">Dr. Anupama Prasad</div>
-                    <p style="color:#666; font-weight:600;">Consultant<br>Obs & Gynaecology</p>
+            <div id="m12" class="tracker-content">
+                <h3 style="color: var(--blue); font-size: 1.8rem;">1 Year Old</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>📏 Growth</h4><p>Birth weight has tripled.</p></div>
+                    <div class="m-box"><h4>🧠 Milestones</h4><p>Takes first steps. Says "Mama" and "Dada".</p></div>
+                    <div class="m-box"><h4>🥣 Feeding</h4><p>Can eat family foods. Cow's milk can be introduced.</p></div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="vaccine" style="padding: 100px 5%; background: linear-gradient(135deg, #FFF9C4 0%, #FFE5B4 100%);">
-        <h2 style="text-align:center; color: var(--dark); font-size: 2.8rem; margin-bottom: 20px;">🗓️ Complete IAP Vaccination Schedule</h2>
-        <p style="text-align:center; font-size: 1.2rem; color: #666; margin-bottom: 40px;">Follow this comprehensive guide for your child's immunization</p>
-        <div class="vaccine-wrapper">
-            <table>
-                <tr>
-                    <th>Age</th>
-                    <th>Vaccines Due</th>
-                </tr>
-                <tr><td><strong>At Birth</strong></td><td>BCG, OPV-0, Hepatitis B-1</td></tr>
-                <tr><td><strong>6 Weeks</strong></td><td>DTwP/DTaP-1, IPV-1, Hep B-2, Hib-1, Rota-1, PCV-1</td></tr>
-                <tr><td><strong>10 Weeks</strong></td><td>DTwP/DTaP-2, IPV-2, Hib-2, Rota-2, PCV-2</td></tr>
-                <tr><td><strong>14 Weeks</strong></td><td>DTwP/DTaP-3, IPV-3, Hib-3, Rota-3, PCV-3</td></tr>
-                <tr><td><strong>6 Months</strong></td><td>Influenza-1, Typhoid Conjugate</td></tr>
-                <tr><td><strong>7 Months</strong></td><td>Influenza-2</td></tr>
-                <tr><td><strong>9 Months</strong></td><td>MMR-1 (Measles, Mumps, Rubella)</td></tr>
-                <tr><td><strong>12 Months</strong></td><td>Hepatitis A-1</td></tr>
-                <tr><td><strong>15 Months</strong></td><td>MMR-2, Varicella-1, PCV Booster</td></tr>
-                <tr><td><strong>16-24 Months</strong></td><td>DTwP/DTaP-B1, IPV-B1, Hib-B1</td></tr>
-                <tr><td><strong>18-19 Months</strong></td><td>Hepatitis A-2, Varicella-2</td></tr>
-                <tr><td><strong>4-6 Years</strong></td><td>DTwP/DTaP-B2, MMR-3</td></tr>
-                <tr><td><strong>10-12 Years</strong></td><td>Tdap, HPV (For Girls - Cervical Cancer)</td></tr>
-            </table>
+        <br><br><br>
+
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2.8rem; color: var(--pink);">🤰 Pregnancy Tracker</h2>
+            <p style="font-size: 1.2rem; color: #666;">Track your amazing journey to motherhood month by month.</p>
         </div>
-    </section>
+        
+        <div class="tracker-wrapper preg-tracker" id="preg-tracker-container">
+            <div class="tracker-tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'p2', 'preg-tracker-container')">Month 2</button>
+                <button class="tab-btn" onclick="openTab(event, 'p4', 'preg-tracker-container')">Month 4</button>
+                <button class="tab-btn" onclick="openTab(event, 'p6', 'preg-tracker-container')">Month 6</button>
+                <button class="tab-btn" onclick="openTab(event, 'p8', 'preg-tracker-container')">Month 8</button>
+                <button class="tab-btn" onclick="openTab(event, 'p9', 'preg-tracker-container')">Month 9</button>
+            </div>
 
-    <section id="booking">
-        <div class="booking-section">
-            <h2 style="text-align:center; color:var(--deep-blue); font-size: 2.8rem; margin-bottom: 10px;">Book Appointment 🍭</h2>
-            <p style="text-align:center; color:#666; font-size: 1.2rem; margin-bottom: 30px;">Fast Track OPD Booking | Instant Email Confirmation</p>
-            <form id="opdForm">
-                <label style="font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px;">Patient Name</label>
-                <input type="text" id="pname" required placeholder="Full Name">
-                
-                <label style="font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px;">Email (For Confirmation)</label>
-                <input type="email" id="p_email" required placeholder="you@email.com">
-                
-                <div style="display:flex; gap:25px;">
-                    <div style="flex:1">
-                        <label style="font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px;">Phone</label>
-                        <input type="tel" id="phone" required placeholder="Your phone number">
-                    </div>
-                    <div style="flex:1">
-                        <label style="font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px;">Age</label>
-                        <input type="number" id="age" required placeholder="Patient age">
-                    </div>
+            <div id="p2" class="tracker-content active">
+                <h3 style="color: var(--pink); font-size: 1.8rem;">Month 2 (Weeks 5-8)</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>🌸 Mother's Body</h4><p>Morning sickness, fatigue, and frequent urination may begin.</p></div>
+                    <div class="m-box"><h4>👶 Baby's Dev</h4><p>Neural tube forms. The heart starts beating and can be seen on ultrasound.</p></div>
+                    <div class="m-box"><h4>💡 Doctor's Tip</h4><p>Start taking prescribed Folic Acid daily to prevent birth defects.</p></div>
                 </div>
-
-                <label style="font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px;">Department</label>
-                <select id="dept" required>
-                    <option value="">-- Select Department --</option>
-                    <option value="Paediatrics">Paediatrics (Child)</option>
-                    <option value="Gynecology">Gynaecology (Mom)</option>
-                    <option value="Vaccination">Vaccination</option>
-                </select>
-
-                <label style="font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px;">Preferred Date</label>
-                <input type="date" id="date" required>
-
-                <button type="submit" class="btn-appoint" style="width:100%; border:none; font-size:1.3rem; cursor:pointer; margin-top: 10px;">Confirm Booking</button>
-            </form>
+            </div>
+            <div id="p4" class="tracker-content">
+                <h3 style="color: var(--pink); font-size: 1.8rem;">Month 4 (Weeks 13-16)</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>🌸 Mother's Body</h4><p>Welcome to the "Golden Trimester"! Energy returns, nausea usually fades.</p></div>
+                    <div class="m-box"><h4>👶 Baby's Dev</h4><p>Fingers, toes, and facial features are well defined. Kidneys are working.</p></div>
+                    <div class="m-box"><h4>💡 Doctor's Tip</h4><p>Start sleeping on your side (left preferred) for better blood flow.</p></div>
+                </div>
+            </div>
+            <div id="p6" class="tracker-content">
+                <h3 style="color: var(--pink); font-size: 1.8rem;">Month 6 (Weeks 21-24)</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>🌸 Mother's Body</h4><p>Noticeable baby bump. You will clearly feel "Quickening" (baby kicks).</p></div>
+                    <div class="m-box"><h4>👶 Baby's Dev</h4><p>Baby's eyes begin to open. They can respond to sounds and music.</p></div>
+                    <div class="m-box"><h4>💡 Doctor's Tip</h4><p>Time for your Glucose Screening test to check for gestational diabetes.</p></div>
+                </div>
+            </div>
+            <div id="p8" class="tracker-content">
+                <h3 style="color: var(--pink); font-size: 1.8rem;">Month 8 (Weeks 29-32)</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>🌸 Mother's Body</h4><p>Shortness of breath and heartburn as the baby pushes against your organs.</p></div>
+                    <div class="m-box"><h4>👶 Baby's Dev</h4><p>Rapid brain growth. Lungs are maturing quickly. Bones are hardening.</p></div>
+                    <div class="m-box"><h4>💡 Doctor's Tip</h4><p>Pack your hospital bag and finalize your birth plan with us.</p></div>
+                </div>
+            </div>
+            <div id="p9" class="tracker-content">
+                <h3 style="color: var(--pink); font-size: 1.8rem;">Month 9 (Weeks 33-40)</h3>
+                <div class="milestone-grid">
+                    <div class="m-box"><h4>🌸 Mother's Body</h4><p>Nesting instinct kicks in. Braxton Hicks (practice) contractions occur.</p></div>
+                    <div class="m-box"><h4>👶 Baby's Dev</h4><p>Baby drops into the pelvis. Fully developed and ready for delivery!</p></div>
+                    <div class="m-box"><h4>💡 Doctor's Tip</h4><p>Watch for signs of labor: water breaking or regular, strong contractions.</p></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <h2 style="color:var(--yellow); font-size: 2.8rem; margin-bottom: 20px;">Chandrawati Hospital</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 15px;">GT Road, Barwadda, Dhanbad, Pin - 826004</p>
-        <div style="font-size:3rem; margin:40px 0;">🧸 🍬 🎈</div>
-        <p style="font-size: 1.1rem; opacity: 0.8;">&copy; 2026 Chandrawati Hospital | Dedicated to Care</p>
+    <section id="blogs" style="padding: 80px 5%; background: #F0F4FF;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.8rem; color: var(--purple);">Latest Health Blogs 📰</h2>
+            <p style="font-size: 1.2rem; color: #666;">Stay updated with our expert articles.</p>
+        </div>
+        <div class="blog-grid" id="blog-container">
+            </div>
+    </section>
+
+    <section id="portal-cta" style="padding: 80px 5%; background: linear-gradient(135deg, var(--deep-blue), var(--blue)); text-align: center; color: white;">
+        <h2 style="font-size: 3.5rem; margin-bottom: 15px; font-family: 'Fredoka', sans-serif;">Remove the Wait! ⏳</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9;">Skip the queues. Register in our Patient Portal to book OPD visits and track your medical history instantly.</p>
+        <button onclick="openPatientPortal()" class="btn-appoint" style="background: white; color: var(--deep-blue) !important; font-size: 1.4rem; padding: 15px 40px !important; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+            <i class="fas fa-user-circle" style="margin-right: 8px;"></i> Open Patient Portal
+        </button>
+    </section>
+
+    <footer style="margin-top: 0;">
+        <h2 style="color:var(--yellow); font-size: 2.5rem; margin-bottom: 10px;">Chandrawati Hospital</h2>
+        <p>GT Road, Barwadda, Dhanbad, Pin - 826004</p>
+        <div style="font-size:2rem; margin:20px 0;">🧸 🍬 🎈</div>
+        <p>&copy; 2026 Chandrawati Hospital</p>
     </footer>
 
-    <!-- MODALS -->
-    <div id="modal-growth" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-box">
-            <span class="close-btn" onclick="document.getElementById('modal-growth').style.display='none'">&times;</span>
-            <h2 class="modal-h2">📏 Growth & Milestones</h2>
-            <ul class="modal-ul">
-                <li><strong>Weight Check:</strong> Newborns lose weight in the first week but regain it by day 10.</li>
-                <li><strong>Red Flags:</strong> No neck holding by 4 months, not sitting by 9 months, no words by 15 months.</li>
-                <li><strong>Height:</strong> Height usually doubles by 4 years of age.</li>
-                <li><strong>Teething:</strong> First tooth usually appears between 6-8 months.</li>
-            </ul>
+    <div id="patientPortalModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-box" style="padding: 0; overflow: hidden; border: 4px solid var(--blue);">
+            
+            <div style="background: var(--blue); padding: 25px; color: white; position: relative;">
+                <h2 style="margin:0; font-family: 'Fredoka', sans-serif;"><i class="fas fa-user-circle"></i> Patient Portal</h2>
+                <span class="close-btn" onclick="closePortal()" style="top: 15px; right: 15px; background: white; color: var(--blue);">&times;</span>
+            </div>
+            
+            <div id="portal-auth-view" style="padding: 30px;">
+                <div class="portal-tabs">
+                    <button onclick="switchPortalTab('register')" class="portal-tab active" id="tab-register">New Registration</button>
+                    <button onclick="switchPortalTab('login')" class="portal-tab" id="tab-login">Returning Patient</button>
+                </div>
+                
+                <div id="form-register">
+                    <div class="portal-form-group">
+                        <label>Patient Full Name</label>
+                        <input type="text" id="reg-name" placeholder="Enter patient name">
+                    </div>
+                    <div class="portal-form-group">
+                        <label>Phone Number (Used to Login)</label>
+                        <input type="tel" id="reg-phone" placeholder="10-digit number">
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="portal-form-group" style="flex:1;">
+                            <label>Age (Yrs/Months)</label>
+                            <input type="text" id="reg-age" placeholder="E.g. 2 Months">
+                        </div>
+                        <div class="portal-form-group" style="flex:1;">
+                            <label>Email (For Booking Emails)</label>
+                            <input type="email" id="reg-email" placeholder="email@example.com">
+                        </div>
+                    </div>
+                    <button onclick="handleRegister()" class="btn-appoint" style="width:100%; font-size:1.2rem;">Register & Login</button>
+                    <p id="reg-error" style="color:red; text-align:center; display:none; font-weight:bold; margin-top:10px;">Please fill all fields.</p>
+                </div>
+
+                <div id="form-login" style="display:none; text-align:center;">
+                    <p style="color:#666; margin-bottom:20px; font-size:1.1rem;">Enter your registered phone number to access your records.</p>
+                    <div class="portal-form-group">
+                        <input type="tel" id="login-phone" placeholder="Enter Phone Number" style="text-align:center; font-size:1.3rem;">
+                    </div>
+                    <button onclick="handleLogin()" class="btn-appoint" style="width:100%; font-size:1.2rem;">Login to Portal</button>
+                    <p id="login-error" style="color:red; text-align:center; display:none; font-weight:bold; margin-top:10px;">Patient not found. Please register.</p>
+                </div>
+            </div>
+            
+            <div id="portal-dashboard-view" style="display:none; padding: 30px; background: #f4f8fb;">
+                <div style="display:flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; padding-bottom: 15px; margin-bottom: 20px;">
+                    <h3 style="margin:0; color: var(--deep-blue); font-size:1.5rem;">Welcome, <span id="dash-name" style="color:var(--pink);"></span>!</h3>
+                    <button onclick="handleLogout()" style="background: #ff4757; color: white; border: none; padding: 8px 20px; border-radius: 20px; font-weight:bold; cursor:pointer;">Logout</button>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 25px; border: 2px solid var(--blue);">
+                    <h4 style="margin-top:0; color: var(--blue); font-size:1.3rem;">📅 Book New Visit</h4>
+                    <p style="color:#666; font-size:0.9rem; margin-bottom:15px;">Time slots are assigned automatically (First Come, First Serve). Max 60 slots per day.</p>
+                    <div style="display:flex; gap: 15px; flex-wrap: wrap;">
+                        <div class="portal-form-group" style="flex:1; margin-bottom:0;">
+                            <select id="book-dept">
+                                <option value="">-- Select Department --</option>
+                                <option value="Paediatrics">Paediatrics</option>
+                                <option value="Gynecology">Gynaecology</option>
+                                <option value="Vaccination">Vaccination</option>
+                            </select>
+                        </div>
+                        <div class="portal-form-group" style="flex:1; margin-bottom:0;">
+                            <input type="date" id="book-date">
+                        </div>
+                        <button onclick="handleBookVisit()" class="btn-appoint" id="dash-book-btn" style="border-radius:12px;">Confirm Booking</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--purple); font-size:1.2rem; margin-bottom:10px;">🏥 Your Visit History</h4>
+                    <div style="background: white; border-radius: 15px; overflow-x: auto; border: 1px solid #ddd;">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Department</th>
+                                    <th>Token / Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-tbody">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-iap-schedule" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-box" style="max-width: 800px;">
+            <span class="close-btn" onclick="document.getElementById('modal-iap-schedule').style.display='none'">&times;</span>
+            <div style="text-align: center;">
+                <h2 class="modal-h2" style="border:none;">🗓️ IAP Vaccination Schedule</h2>
+            </div>
+            <div style="overflow-x: auto; margin-top: 15px; border-radius: 15px; border: 3px solid var(--purple);">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <tr style="background: var(--purple); color: white;">
+                        <th style="padding: 15px;">Age</th>
+                        <th style="padding: 15px;">Vaccines Due</th>
+                    </tr>
+                    <tr><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>At Birth</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">BCG, OPV-0, Hepatitis B-1</td></tr>
+                    <tr style="background:#f9f9f9;"><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>6 Weeks</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">DTwP/DTaP-1, IPV-1, Hep B-2, Hib-1, Rota-1, PCV-1</td></tr>
+                    <tr><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>10 Weeks</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">DTwP/DTaP-2, IPV-2, Hib-2, Rota-2, PCV-2</td></tr>
+                    <tr style="background:#f9f9f9;"><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>14 Weeks</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">DTwP/DTaP-3, IPV-3, Hib-3, Rota-3, PCV-3</td></tr>
+                    <tr><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>6 Months</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">Influenza-1, Typhoid Conjugate</td></tr>
+                    <tr style="background:#f9f9f9;"><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>9 Months</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">MMR-1 (Measles, Mumps, Rubella)</td></tr>
+                    <tr><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>12 Months</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">Hepatitis A-1</td></tr>
+                    <tr style="background:#f9f9f9;"><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>15 Months</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">MMR-2, Varicella-1, PCV Booster</td></tr>
+                    <tr><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>16-24 Months</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">DTwP/DTaP-B1, IPV-B1, Hib-B1</td></tr>
+                    <tr style="background:#f9f9f9;"><td style="padding:12px; border-bottom:1px solid #ddd;"><strong>4-6 Years</strong></td><td style="padding:12px; border-bottom:1px solid #ddd;">DTwP/DTaP-B2, MMR-3</td></tr>
+                    <tr><td style="padding:12px;"><strong>10-12 Years</strong></td><td style="padding:12px;">Tdap, HPV (For Girls - Cervical Cancer)</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-blog" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-box" style="max-width: 800px;">
+            <span class="close-btn" onclick="document.getElementById('modal-blog').style.display='none'">&times;</span>
+            <div class="blog-tag" id="blog-modal-tag" style="background:var(--purple); color:white; padding:5px 15px; border-radius:20px; display:inline-block; font-weight:bold; margin-bottom:15px;"></div>
+            <h2 class="modal-h2" id="blog-modal-title" style="border-bottom:none; margin-bottom:15px; font-size: 2.2rem; display: block; line-height: 1.2;"></h2>
+            <div id="blog-modal-content" style="line-height:1.8; color:#444; font-size:1.15rem; text-align:left; border-top: 2px solid #eee; padding-top: 20px;"></div>
         </div>
     </div>
 
@@ -1067,10 +738,10 @@
             <span class="close-btn" onclick="document.getElementById('modal-vaccine').style.display='none'">&times;</span>
             <h2 class="modal-h2">💉 Vaccination Guide</h2>
             <ul class="modal-ul">
-                <li><strong>Painless vs Painful:</strong> Painless (Acellular) vaccines cause significantly less fever and swelling than whole-cell vaccines.</li>
+                <li><strong>Routine Immunization:</strong> Following the complete IAP schedule is crucial for your child's immunity.</li>
+                <li><strong>Painless vs Painful:</strong> Painless (Acellular) vaccines cause significantly less fever, pain, and swelling than whole-cell vaccines.</li>
                 <li><strong>Post-Vaccine Care:</strong> Do not massage the injection site. Use a cool cloth for swelling.</li>
-                <li><strong>Missed Dose?</strong> Don't panic. Consult us to reschedule. It is never too late to catch up.</li>
-                <li><strong>Flu Shot:</strong> Recommended annually for children under 5 years.</li>
+                <li><strong>Missed Dose?</strong> Don't panic. Consult us to reschedule safely. Catch-up doses are highly effective.</li>
             </ul>
         </div>
     </div>
@@ -1078,12 +749,19 @@
     <div id="modal-nutrition" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-box">
             <span class="close-btn" onclick="document.getElementById('modal-nutrition').style.display='none'">&times;</span>
-            <h2 class="modal-h2">🥦 Nutrition & Diet</h2>
+            <h2 class="modal-h2">🥦 Detailed Nutrition & Diet Guide</h2>
             <ul class="modal-ul">
-                <li><strong>Brain Foods:</strong> Eggs, Fish, Nuts (powdered for toddlers), and Yogurt.</li>
-                <li><strong>Iron:</strong> Essential for IQ. Found in Green Leafy Veggies, Jaggery, and Dates.</li>
-                <li><strong>The No-No List:</strong> No Salt, Sugar, or Honey/Cow Milk before 1 year of age.</li>
-                <li><strong>Picky Eaters:</strong> Don't force feed. Offer small, colorful portions frequently.</li>
+                <li><strong>Infants (0-1 Year):</strong> Exclusive breastfeeding for the first 6 months. Introduce iron-rich purees and mashed fruits at 6 months. Avoid salt, sugar, and cow's milk entirely before age 1.</li>
+                <li><strong>Toddlers (1-3 Years):</strong> Transition to family foods. Ensure 3 main meals and 2 healthy snacks. Incorporate full-fat dairy for brain development, lean proteins, and colorful vegetables.</li>
+                <li><strong>Essential Micronutrients:</strong>
+                    <ul>
+                        <li><em>Iron:</em> Dates, jaggery, spinach, and lean meats (crucial for IQ and preventing anemia).</li>
+                        <li><em>Calcium & Vitamin D:</em> Milk, yogurt, ragi, and morning sunlight for strong bones.</li>
+                        <li><em>Healthy Fats:</em> Ghee, butter, nuts powder, and avocados for nervous system growth.</li>
+                    </ul>
+                </li>
+                <li><strong>Hydration:</strong> Ensure adequate water intake after 6 months. Avoid packed juices and sodas.</li>
+                <li><strong>Picky Eaters:</strong> Do not force-feed. Offer a variety of textures and colors. Keep meal times screen-free and pleasant.</li>
             </ul>
         </div>
     </div>
@@ -1095,8 +773,7 @@
             <ul class="modal-ul">
                 <li><strong>0-2 Years:</strong> Zero screen time. Brain development relies on real-world interaction.</li>
                 <li><strong>2-5 Years:</strong> Max 1 hour/day of educational content.</li>
-                <li><strong>20-20-20 Rule:</strong> Every 20 mins, look 20 feet away for 20 seconds to reduce eye strain.</li>
-                <li><strong>Blue Light:</strong> Stops sleep hormone (Melatonin). No screens 1 hour before bed.</li>
+                <li><strong>20-20-20 Rule:</strong> Every 20 mins, look 20 feet away for 20 seconds.</li>
             </ul>
         </div>
     </div>
@@ -1106,10 +783,9 @@
             <span class="close-btn" onclick="document.getElementById('modal-breastfeeding').style.display='none'">&times;</span>
             <h2 class="modal-h2">🤱 Exclusive Breastfeeding</h2>
             <ul class="modal-ul">
-                <li><strong>No Water Needed:</strong> Breast milk is 88% water. It hydrates the baby perfectly even in summer.</li>
-                <li><strong>On Demand:</strong> Feed whenever the baby shows hunger cues (licking lips, sucking fingers).</li>
-                <li><strong>Fore-milk vs Hind-milk:</strong> Fore-milk quenches thirst; Hind-milk (thicker) provides fat for weight gain. Empty one breast fully before switching.</li>
-                <li><strong>Mother's Diet:</strong> Eat healthy. No strict restrictions unless the baby shows specific allergies.</li>
+                <li><strong>First 6 Months:</strong> Strictly breast milk. Breast milk is 88% water, so NO extra water needed.</li>
+                <li><strong>On Demand:</strong> Feed whenever the baby shows hunger cues.</li>
+                <li><strong>Benefits:</strong> Higher IQ, superior immunity against infections.</li>
             </ul>
         </div>
     </div>
@@ -1117,142 +793,118 @@
     <div id="modal-complementary" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-box">
             <span class="close-btn" onclick="document.getElementById('modal-complementary').style.display='none'">&times;</span>
-            <h2 class="modal-h2">🥣 Starting Solids (6+ Months)</h2>
+            <h2 class="modal-h2">🥣 Complementary Feeding</h2>
             <ul class="modal-ul">
-                <li><strong>Day 1-3:</strong> Start with single-grain cereal (Rice/Ragi) or mashed apple.</li>
-                <li><strong>Texture:</strong> Start with smooth puree, move to mashed/lumpy by 8 months.</li>
-                <li><strong>Food Groups:</strong> Introduce vegetables early so they don't develop a sweet tooth.</li>
-                <li><strong>Allergy Check:</strong> Introduce new foods one at a time and wait 3 days to check for rashes.</li>
+                <li><strong>When to Start:</strong> Exactly after 6 months of age.</li>
+                <li><strong>First Foods:</strong> Start with single-grain cereal, thick dal water, or mashed apple.</li>
+                <li><strong>Texture:</strong> Start smooth, move to lumpy mashed foods by 8 months.</li>
             </ul>
         </div>
     </div>
 
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-box" style="text-align:center; border-color: var(--yellow);">
-            <div style="font-size:7rem; animation: bounce 1s ease-in-out infinite;">🎉</div>
-            <h2 style="color:var(--deep-blue); font-size: 2.5rem; margin: 20px 0;">Booking Confirmed!</h2>
-            <p style="font-size: 1.3rem;">We have sent a confirmation email to:<br><b id="confirm-email" style="color:var(--pink); font-size: 1.4rem;"></b></p>
-            <button class="btn-appoint" onclick="document.getElementById('bookingModal').style.display='none'" style="margin-top: 20px; padding: 15px 40px;">Awesome!</button>
+            <div style="font-size:5rem;">🎉</div>
+            <h2 style="color:var(--deep-blue); margin: 10px 0;">Booking Confirmed!</h2>
+            <p>Confirmation email sent to:<br><b id="confirm-email" style="color:var(--pink);"></b></p>
+            <button class="btn-appoint" onclick="document.getElementById('bookingModal').style.display='none'" style="margin-top: 15px;">Close Window</button>
         </div>
     </div>
 
     <script>
-        // --- PARTICLES ANIMATION ---
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 50;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#6C5CE7'][Math.floor(Math.random() * 4)];
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // --- SCROLL PROGRESS BAR ---
+        // --- OPTIMIZED SCROLL ---
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const scrollProgress = document.getElementById('scrollProgress');
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / scrollHeight) * 100;
-            scrollProgress.style.width = scrolled + '%';
-        });
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollProgress = document.getElementById('scrollProgress');
+                    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    scrollProgress.style.width = (window.scrollY / scrollHeight) * 100 + '%';
 
-        // --- NAVIGATION SCROLL EFFECT ---
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+                    const nav = document.getElementById('mainNav');
+                    if (window.scrollY > 50) nav.classList.add('scrolled');
+                    else nav.classList.remove('scrolled');
+                    
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
 
-        // --- ANIMATED COUNTER ---
-        const observerOptions = {
-            threshold: 0.5
-        };
+        // --- TRACKER LOGIC ---
+        function openTab(evt, tabName, containerId) {
+            const container = document.getElementById(containerId);
+            const contents = container.getElementsByClassName("tracker-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].style.display = "none";
+            }
+            const tabs = container.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('.stat-number');
-                    counters.forEach(counter => {
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        const duration = 2000;
-                        const increment = target / (duration / 16);
-                        let current = 0;
+        // --- MOCK BLOG API GENERATOR (UPDATED NO-SUNLIGHT CONTENT) ---
+        const blogsData = [
+            {
+                id: 1,
+                tag: "Pediatrics",
+                title: "How to Manage Newborn Jaundice",
+                excerpt: "Jaundice is common in newborns. Learn when to consult a doctor and the role of LED Phototherapy.",
+                content: "<p>Newborn jaundice is a yellowing of a baby's skin and eyes. It is very common and occurs when babies have a high level of bilirubin, a yellow pigment produced during normal breakdown of red blood cells.</p><h3>When to seek LED Phototherapy?</h3><p>Consult your pediatrician immediately to check bilirubin levels. Do not rely on unverified home remedies. If the jaundice spreads to the chest, abdomen, or legs, or if the baby is lethargic and not feeding well, medical intervention is required. Our hospital provides advanced Double Surface LED Phototherapy, which is highly effective and completely safe for your baby's delicate skin.</p>"
+            },
+            {
+                id: 2,
+                tag: "Maternity",
+                title: "Painless Delivery: Myths vs Facts",
+                excerpt: "Epidural analgesia makes normal delivery comfortable. We debunk the common myths surrounding back pain and safety.",
+                content: "<p>Many expecting mothers fear the pain of normal delivery, leading to unnecessary anxiety or elective C-sections. Epidural analgesia (Painless Delivery) is a safe solution.</p><h3>Myth 1: Epidurals cause permanent back pain.</h3><p><strong>Fact:</strong> While you might feel mild soreness at the injection site for a day or two, epidurals DO NOT cause chronic back pain. Pregnancy itself and carrying the baby's weight is the usual culprit for postpartum backache.</p><h3>Myth 2: It harms the baby.</h3><p><strong>Fact:</strong> The medication is injected into the spine space, not the bloodstream. A very negligible amount reaches the baby, making it entirely safe.</p><p>Speak to our Obstetrician to plan a stress-free delivery!</p>"
+            },
+            {
+                id: 3,
+                tag: "Nutrition",
+                title: "Top 5 Iron-Rich Foods for Toddlers",
+                excerpt: "Iron deficiency limits brain development. Discover easy recipes using jaggery, dates, and spinach that your kid will love.",
+                content: "<p>Iron is crucial for your growing toddler. It moves oxygen from the lungs to the rest of the body and helps muscles store and use oxygen. A lack of iron can lead to anemia and delayed cognitive development.</p><h3>Top 5 Iron Boosters:</h3><ul><li><strong>1. Lean Meats:</strong> Chicken and fish are excellent sources of easily absorbable 'heme' iron.</li><li><strong>2. Spinach & Dark Greens:</strong> Puree them into soups or dals.</li><li><strong>3. Lentils (Dal):</strong> A staple in Indian diets, rich in protein and iron.</li><li><strong>4. Jaggery (Gur):</strong> Replace refined sugar with jaggery in porridges.</li><li><strong>5. Dates & Raisins:</strong> Great for natural sweetening and packed with iron.</li></ul><p><em>Pro Tip:</em> Always pair iron-rich foods with Vitamin C (like a squeeze of lemon or orange juice) to maximize absorption!</p>"
+            }
+        ];
 
-                        const updateCounter = () => {
-                            current += increment;
-                            if (current < target) {
-                                counter.textContent = Math.floor(current);
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.textContent = target;
-                            }
-                        };
-                        updateCounter();
-                    });
-                    observer.unobserve(entry.target);
-                }
+        // Renders blogs instantly on page load (No wait/setTimeout)
+        function loadBlogs() {
+            const container = document.getElementById('blog-container');
+            container.innerHTML = '';
+
+            blogsData.forEach(blog => {
+                const card = document.createElement('div');
+                card.className = 'blog-card';
+                card.onclick = () => openBlogModal(blog.id);
+                card.innerHTML = `
+                    <div class="blog-tag">${blog.tag}</div>
+                    <h3 class="blog-title">${blog.title}</h3>
+                    <p class="blog-excerpt">${blog.excerpt}</p>
+                    <span class="blog-read">Read Full Article ➔</span>
+                `;
+                container.appendChild(card);
             });
-        }, observerOptions);
+        }
+        window.addEventListener('load', loadBlogs);
 
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) observer.observe(statsSection);
+        function openBlogModal(blogId) {
+            const blog = blogsData.find(b => b.id === blogId);
+            if (blog) {
+                document.getElementById('blog-modal-tag').innerText = blog.tag;
+                document.getElementById('blog-modal-title').innerText = blog.title;
+                document.getElementById('blog-modal-content').innerHTML = blog.content;
+                openModal('modal-blog');
+            }
+        }
 
         // --- EMAILJS KEYS ---
         const EMAIL_PUBLIC_KEY = "Os_1cPv4tl4ROt2L3"; 
         const EMAIL_SERVICE_ID = "Chandrawatihosptial"; 
         const EMAIL_TEMPLATE_ID = "template_0zmj1zt"; 
-
         (function() { emailjs.init(EMAIL_PUBLIC_KEY); })();
 
         // --- MODAL LOGIC ---
@@ -1260,81 +912,196 @@
             document.getElementById(id).style.display = 'flex'; 
             document.body.style.overflow = 'hidden';
         }
-        
         function closeModal(e) { 
-            if (e.target.classList.contains('modal-overlay')) { 
-                e.target.style.display = 'none'; 
+            if (e === undefined || e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')) { 
+                const modals = document.querySelectorAll('.modal-overlay');
+                modals.forEach(m => m.style.display = 'none');
                 document.body.style.overflow = 'auto';
             } 
         }
 
-        // --- BOOKING LOGIC ---
-        const form = document.getElementById('opdForm');
-        const submitBtn = document.querySelector('button[type="submit"]');
+        // --- PATIENT PORTAL LOGIC ---
+        const DB_KEY = 'chandrawati_patients_db';
+        let currentUser = null;
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            submitBtn.innerHTML = "🎈 Booking...";
-            submitBtn.disabled = true;
+        function getDB() { return JSON.parse(localStorage.getItem(DB_KEY)) || {}; }
+        function saveDB(db) { localStorage.setItem(DB_KEY, JSON.stringify(db)); }
 
-            const data = {
-                id: Date.now(),
-                name: document.getElementById('pname').value,
-                email: document.getElementById('p_email').value,
-                phone: document.getElementById('phone').value,
-                dept: document.getElementById('dept').value,
-                date: document.getElementById('date').value,
-                status: 'Pending'
-            };
+        function openPatientPortal() {
+            document.getElementById('patientPortalModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            if(currentUser) { showDashboard(); } 
+            else { showAuthView(); switchPortalTab('register'); }
+        }
+        
+        function closePortal() {
+            document.getElementById('patientPortalModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-            // Save Locally
-            let bookings = JSON.parse(localStorage.getItem('hospital_appointments')) || [];
-            bookings.push(data);
-            localStorage.setItem('hospital_appointments', JSON.stringify(bookings));
+        function switchPortalTab(tab) {
+            if(tab === 'register') {
+                document.getElementById('form-register').style.display = 'block';
+                document.getElementById('form-login').style.display = 'none';
+                document.getElementById('tab-register').classList.add('active');
+                document.getElementById('tab-login').classList.remove('active');
+            } else {
+                document.getElementById('form-register').style.display = 'none';
+                document.getElementById('form-login').style.display = 'block';
+                document.getElementById('tab-login').classList.add('active');
+                document.getElementById('tab-register').classList.remove('active');
+            }
+            document.getElementById('reg-error').style.display = 'none';
+            document.getElementById('login-error').style.display = 'none';
+        }
+
+        function showAuthView() {
+            document.getElementById('portal-auth-view').style.display = 'block';
+            document.getElementById('portal-dashboard-view').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('portal-auth-view').style.display = 'none';
+            document.getElementById('portal-dashboard-view').style.display = 'block';
+            document.getElementById('dash-name').innerText = currentUser.name;
+            renderHistory();
+        }
+
+        function handleRegister() {
+            const name = document.getElementById('reg-name').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            const age = document.getElementById('reg-age').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+
+            if(!name || !phone || !age || !email) {
+                document.getElementById('reg-error').style.display = 'block';
+                return;
+            }
+
+            let db = getDB();
+            if(!db[phone]) {
+                db[phone] = { name, phone, age, email, visits: [] };
+                saveDB(db);
+            }
+            
+            currentUser = db[phone];
+            showDashboard();
+        }
+
+        function handleLogin() {
+            const phone = document.getElementById('login-phone').value.trim();
+            let db = getDB();
+            if(db[phone]) {
+                currentUser = db[phone];
+                showDashboard();
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+            }
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            showAuthView();
+            switchPortalTab('login');
+        }
+
+        function renderHistory() {
+            const tbody = document.getElementById('history-tbody');
+            tbody.innerHTML = '';
+            
+            if(currentUser.visits.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No past visits found.</td></tr>';
+                return;
+            }
+
+            const sortedVisits = [...currentUser.visits].reverse();
+            sortedVisits.forEach(visit => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${visit.date}</strong></td>
+                        <td>${visit.dept}</td>
+                        <td><span class="token-badge">No. ${visit.token}</span><br><small style="color:#666">${visit.time}</small></td>
+                        <td><span class="status-badge">${visit.status}</span></td>
+                    </tr>
+                `;
+            });
+        }
+
+        function handleBookVisit() {
+            const dept = document.getElementById('book-dept').value;
+            const date = document.getElementById('book-date').value;
+            const btn = document.getElementById('dash-book-btn');
+
+            if(!dept || !date) {
+                alert("Please select both Department and Date.");
+                return;
+            }
+
+            let db = getDB();
+            let allPatients = Object.values(db);
+            let deptDateCount = 0;
+            
+            allPatients.forEach(p => {
+                p.visits.forEach(v => {
+                    if(v.date === date && v.dept === dept) deptDateCount++;
+                });
+            });
+
+            if(deptDateCount >= 60) {
+                alert(`❌ Fully Booked. ${dept} has reached its maximum capacity of 60 appointments for ${date}.`);
+                return;
+            }
+
+            const apptNum = deptDateCount + 1;
+            
+            // Allocate Time Slot (First Come First Serve logic)
+            let slot = "";
+            if(apptNum <= 10) slot = "10:00 AM - 11:00 AM";
+            else if(apptNum <= 20) slot = "11:00 AM - 12:00 PM";
+            else if(apptNum <= 30) slot = "12:00 PM - 01:00 PM";
+            else if(apptNum <= 40) slot = "02:00 PM - 03:00 PM";
+            else if(apptNum <= 50) slot = "03:00 PM - 04:00 PM";
+            else slot = "04:00 PM - 05:00 PM";
+
+            btn.innerHTML = "Booking...";
+            btn.disabled = true;
+
+            // Save Visit with token and time
+            db[currentUser.phone].visits.push({ 
+                date: date, 
+                dept: dept, 
+                status: 'Confirmed',
+                token: apptNum,
+                time: slot
+            });
+            saveDB(db);
+            currentUser = db[currentUser.phone];
 
             // Send Email
             emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, {
-                to_email: data.email, 
-                to_name: data.name, 
-                dept: data.dept, 
-                date: data.date, 
-                phone: data.phone
+                to_email: currentUser.email, 
+                to_name: currentUser.name, 
+                dept: dept, 
+                date: date, 
+                phone: currentUser.phone,
+                appointment_number: apptNum,
+                appointment_time: slot
             }).then(() => {
-                document.getElementById('confirm-email').innerText = data.email;
+                document.getElementById('confirm-email').innerText = currentUser.email;
                 document.getElementById('bookingModal').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                submitBtn.innerHTML = "Confirm Booking";
-                submitBtn.disabled = false;
-                form.reset();
+                btn.innerHTML = "Confirm Booking";
+                btn.disabled = false;
+                document.getElementById('book-dept').value = '';
+                document.getElementById('book-date').value = '';
+                renderHistory();
             }, (err) => {
-                alert("Saved locally, but Email failed. Check internet.");
-                submitBtn.innerHTML = "Confirm Booking";
-                submitBtn.disabled = false;
+                document.getElementById('confirm-email').innerText = currentUser.email + " (Email failed, booked locally)";
+                document.getElementById('bookingModal').style.display = 'flex';
+                btn.innerHTML = "Confirm Booking";
+                btn.disabled = false;
+                renderHistory();
             });
-        });
-
-        // --- LOADING SCREEN ---
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loadingOverlay = document.getElementById('loadingOverlay');
-                loadingOverlay.classList.add('hidden');
-            }, 800);
-        });
-
-        // --- MOBILE MENU ---
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         }
-
-        // Bounce animation for success modal
-        const bounceAnimation = `
-            @keyframes bounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-20px); }
-            }
-        `;
-
     </script>
 </body>
 </html>

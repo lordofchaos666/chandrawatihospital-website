@@ -7,6 +7,8 @@
     
     <!-- Brevo transactional email (replaces EmailJS) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -872,7 +874,7 @@
             </div>
         </a>
 
-        <i class="fas fa-bars menu-toggle" onclick="toggleMenu()" aria-label="Menu"></i>
+        <i class="fas fa-bars menu-toggle" onclick="toggleMenu(event)" aria-label="Menu"></i>
 
         <div class="nav-links" id="navLinks">
             <a href="#treatments" onclick="closeMenu()">Specialities</a>
@@ -1203,7 +1205,7 @@
             <div class="facilities-grid">
                 <div class="facility-card">
                     <div class="facility-img-wrap">
-                        <img src="https://images.pexels.com/photos/32026163/pexels-photo-32026163.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Neonatal Ventilator">
+                        <img loading="lazy" src="https://images.pexels.com/photos/32026163/pexels-photo-32026163.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Neonatal Ventilator">
                         <div class="facility-img-overlay-bar" style="background:linear-gradient(90deg,var(--teal),var(--teal-light));"></div>
                     </div>
                     <div class="facility-body">
@@ -1223,7 +1225,7 @@
                 </div>
                 <div class="facility-card">
                     <div class="facility-img-wrap">
-                        <img src="https://images.pexels.com/photos/29352344/pexels-photo-29352344.jpeg?auto=compress&cs=tinysrgb&w=700" alt="LED Phototherapy">
+                        <img loading="lazy" src="https://images.pexels.com/photos/29352344/pexels-photo-29352344.jpeg?auto=compress&cs=tinysrgb&w=700" alt="LED Phototherapy">
                         <div class="facility-img-overlay-bar" style="background:linear-gradient(90deg,#c4a535,var(--gold-light));"></div>
                     </div>
                     <div class="facility-body">
@@ -1234,7 +1236,7 @@
 
                 <div class="facility-card">
                     <div class="facility-img-wrap">
-                        <img src="https://images.pexels.com/photos/11198237/pexels-photo-11198237.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Modular OT">
+                        <img loading="lazy" src="https://images.pexels.com/photos/11198237/pexels-photo-11198237.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Modular OT">
                         <div class="facility-img-overlay-bar" style="background:linear-gradient(90deg,#6b4fa0,#9b7bc8);"></div>
                     </div>
                     <div class="facility-body">
@@ -1244,7 +1246,7 @@
                 </div>
                 <div class="facility-card">
                     <div class="facility-img-wrap">
-                        <img src="https://images.pexels.com/photos/3992931/pexels-photo-3992931.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Vaccination Centre">
+                        <img loading="lazy" src="https://images.pexels.com/photos/3992931/pexels-photo-3992931.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Vaccination Centre">
                         <div class="facility-img-overlay-bar" style="background:linear-gradient(90deg,#0e7490,#22d3ee);"></div>
                     </div>
                     <div class="facility-body">
@@ -1355,7 +1357,7 @@
             </div>
             <div class="guide-grid">
                 <div class="guide-card" onclick="openModal('modal-vaccine')">
-                    <img src="https://images.pexels.com/photos/6074929/pexels-photo-6074929.jpeg?auto=compress&cs=tinysrgb&w=700" class="guide-img" alt="Vaccination">
+                    <img loading="lazy" src="https://images.pexels.com/photos/6074929/pexels-photo-6074929.jpeg?auto=compress&cs=tinysrgb&w=700" class="guide-img" alt="Vaccination">
                     <div class="guide-body">
                         <div class="guide-tag">Immunisation</div>
                         <div class="guide-title">Vaccination Guide for Parents</div>
@@ -1363,7 +1365,7 @@
                     </div>
                 </div>
                 <div class="guide-card" onclick="openModal('modal-nutrition')">
-                    <img src="https://images.pexels.com/photos/5966434/pexels-photo-5966434.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Nutrition">
+                    <img loading="lazy" src="https://images.pexels.com/photos/5966434/pexels-photo-5966434.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Nutrition">
                     <div class="guide-body">
                         <div class="guide-tag">Nutrition</div>
                         <div class="guide-title">Paediatric Nutrition &amp; Dietary Guidelines</div>
@@ -1371,7 +1373,7 @@
                     </div>
                 </div>
                 <div class="guide-card" onclick="openModal('modal-screen')">
-                    <img src="https://images.pexels.com/photos/4145077/pexels-photo-4145077.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Screen Time">
+                    <img loading="lazy" src="https://images.pexels.com/photos/4145077/pexels-photo-4145077.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Screen Time">
                     <div class="guide-body">
                         <div class="guide-tag">Child Development</div>
                         <div class="guide-title">Screen Time &amp; Eye Health Guidelines</div>
@@ -1379,7 +1381,7 @@
                     </div>
                 </div>
                 <div class="guide-card" onclick="openModal('modal-breastfeeding')">
-                    <img src="https://images.pexels.com/photos/3279208/pexels-photo-3279208.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Breastfeeding">
+                    <img loading="lazy" src="https://images.pexels.com/photos/3279208/pexels-photo-3279208.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Breastfeeding">
                     <div class="guide-body">
                         <div class="guide-tag">Neonatal</div>
                         <div class="guide-title">Exclusive Breastfeeding: Clinical Recommendations</div>
@@ -1387,7 +1389,7 @@
                     </div>
                 </div>
                 <div class="guide-card" onclick="openModal('modal-complementary')">
-                    <img src="https://images.pexels.com/photos/5083236/pexels-photo-5083236.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Complementary Feeding">
+                    <img loading="lazy" src="https://images.pexels.com/photos/5083236/pexels-photo-5083236.jpeg?auto=compress&cs=tinysrgb&w=600" class="guide-img" alt="Complementary Feeding">
                     <div class="guide-body">
                         <div class="guide-tag">Infant Feeding</div>
                         <div class="guide-title">Starting Solids: Complementary Feeding</div>
@@ -1871,12 +1873,19 @@
     <!-- =================== SCRIPTS =================== -->
     <script>
         // --- MOBILE MENU ---
-        function toggleMenu() {
+        function toggleMenu(e) {
+            e.stopPropagation();
             document.getElementById('navLinks').classList.toggle('active');
         }
         function closeMenu() {
             document.getElementById('navLinks').classList.remove('active');
         }
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('navLinks');
+            if (nav && nav.classList.contains('active') && !nav.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
 
         // --- SCROLL PROGRESS ---
         let ticking = false;
@@ -2039,6 +2048,11 @@
 
         // --- PATIENT PORTAL ---
         const DB_KEY = 'chandrawati_patients_db';
+        // ── Booking constants ────────────────────────────────
+        const MAX_CAPACITY   = 60;   // max patients per dept per day
+        const MAX_PER_SLOT   = 10;   // patients per time slot
+        const OPD_SLOTS = ['10:00 AM–11:00 AM','11:00 AM–12:00 PM','12:00 PM–1:00 PM','2:00 PM–3:00 PM','3:00 PM–4:00 PM','4:00 PM–5:00 PM'];
+
         let currentUser = null;
         function getDB() { return JSON.parse(localStorage.getItem(DB_KEY)) || {}; }
         function saveDB(db) { localStorage.setItem(DB_KEY, JSON.stringify(db)); }
@@ -2046,6 +2060,9 @@
         function openPatientPortal() {
             document.getElementById('patientPortalModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            // Prevent past-date bookings — set min to today
+            const todayISO = new Date().toISOString().split('T')[0];
+            document.getElementById('book-date').min = todayISO;
             if (currentUser) showDashboard();
             else { showAuthView(); switchPortalTab('register'); }
         }
@@ -2079,7 +2096,19 @@
             const email = document.getElementById('reg-email').value.trim();
             if (!name || !phone || !age || !email) { document.getElementById('reg-error').style.display = 'block'; return; }
             let db = getDB();
-            if (!db[phone]) { db[phone] = { name, phone, age, email, visits: [] }; saveDB(db); }
+            if (db[phone]) {
+                // Existing patient — ask if they want to update their details
+                const update = confirm('A record already exists for this phone number (' + db[phone].name + '). Update your details?');
+                if (update) {
+                    db[phone].name  = name;
+                    db[phone].age   = age;
+                    db[phone].email = email;
+                    saveDB(db);
+                }
+            } else {
+                db[phone] = { name, phone, age, email, visits: [] };
+                saveDB(db);
+            }
             currentUser = db[phone];
             showDashboard();
         }
@@ -2089,7 +2118,7 @@
             if (db[phone]) { currentUser = db[phone]; showDashboard(); }
             else { document.getElementById('login-error').style.display = 'block'; }
         }
-        function handleLogout() { currentUser = null; showAuthView(); switchPortalTab('login'); }
+        function handleLogout() { if (!confirm('Log out of the patient portal?')) return; currentUser = null; showAuthView(); switchPortalTab('login'); }
         function renderHistory() {
             const tbody = document.getElementById('history-tbody');
             tbody.innerHTML = '';
@@ -2097,8 +2126,41 @@
                 tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-light); padding:20px;">No visits recorded.</td></tr>';
                 return;
             }
+            // Safe DOM creation — prevents XSS from crafted patient data
             [...currentUser.visits].reverse().forEach(v => {
-                tbody.innerHTML += `<tr><td><strong>${v.date}</strong></td><td>${v.dept}</td><td><span class="token-badge">#${v.token}</span><br><small style="color:var(--text-light)">${v.time}</small></td><td><span class="status-badge">${v.status}</span></td></tr>`;
+                const tr = document.createElement('tr');
+
+                const tdDate = document.createElement('td');
+                const strong = document.createElement('strong');
+                strong.textContent = v.date;
+                tdDate.appendChild(strong);
+
+                const tdDept = document.createElement('td');
+                tdDept.textContent = v.dept;
+
+                const tdToken = document.createElement('td');
+                const badge = document.createElement('span');
+                badge.className = 'token-badge';
+                badge.textContent = '#' + v.token;
+                const br = document.createElement('br');
+                const small = document.createElement('small');
+                small.style.color = 'var(--text-light)';
+                small.textContent = v.time;
+                tdToken.appendChild(badge);
+                tdToken.appendChild(br);
+                tdToken.appendChild(small);
+
+                const tdStatus = document.createElement('td');
+                const statusBadge = document.createElement('span');
+                statusBadge.className = 'status-badge';
+                statusBadge.textContent = v.status;
+                tdStatus.appendChild(statusBadge);
+
+                tr.appendChild(tdDate);
+                tr.appendChild(tdDept);
+                tr.appendChild(tdToken);
+                tr.appendChild(tdStatus);
+                tbody.appendChild(tr);
             });
         }
         // Hospital WhatsApp number — change to your actual number
@@ -2112,10 +2174,9 @@
             let db = getDB();
             let count = 0;
             Object.values(db).forEach(p => p.visits.forEach(v => { if (v.date === date && v.dept === dept) count++; }));
-            if (count >= 60) { alert(`Fully booked. ${dept} has reached its maximum capacity of 60 appointments on ${date}.`); return; }
+            if (count >= MAX_CAPACITY) { alert(`Fully booked. ${dept} has reached its daily limit of ${MAX_CAPACITY} appointments on ${date}.`); return; }
             const apptNum = count + 1;
-            const slots = ['10:00 AM–11:00 AM','11:00 AM–12:00 PM','12:00 PM–1:00 PM','2:00 PM–3:00 PM','3:00 PM–4:00 PM','4:00 PM–5:00 PM'];
-            const slot = slots[Math.min(Math.floor((apptNum - 1) / 10), slots.length - 1)];
+            const slot = OPD_SLOTS[Math.min(Math.floor((apptNum - 1) / MAX_PER_SLOT), OPD_SLOTS.length - 1)];
             btn.innerHTML = 'Processing...';
             btn.disabled = true;
             db[currentUser.phone].visits.push({ date, dept, status: 'Confirmed', token: apptNum, time: slot });
@@ -2123,9 +2184,21 @@
             currentUser = db[currentUser.phone];
 
             sendBrevoEmail(currentUser.email, currentUser.name, dept, date, currentUser.phone, apptNum, slot)
-            .then(() => {}, () => {}).finally(() => {
-                // Email confirmation
-                document.getElementById('confirm-email').innerText = currentUser.email;
+            .then(
+                () => {
+                    const el = document.getElementById('confirm-email');
+                    el.textContent = currentUser.email;
+                    el.style.color = 'var(--teal)';
+                    el.closest('p').querySelector('span.email-status-msg') && (el.closest('p').querySelector('span.email-status-msg').textContent = '');
+                },
+                () => {
+                    const el = document.getElementById('confirm-email');
+                    el.textContent = 'Email could not be sent — please note your token number above.';
+                    el.style.color = '#b45309';
+                }
+            ).finally(() => {
+                // Email confirmation (fallback label already set above)
+                document.getElementById('confirm-email').textContent || (document.getElementById('confirm-email').textContent = currentUser.email);
 
                 // Booking summary box
                 document.getElementById('booking-summary').innerHTML =
